@@ -5,17 +5,20 @@ import 'package:quiz_app/Question.dart';
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int index;
-  Quiz(this.questions, this.index);
+  final VoidCallback _clickHandler;
+  final List<String> answers;
+  Quiz(this.questions, this.index, this._clickHandler, this.answers);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Question(questions[index]['questionText'] as String),
-        Answer((questions[index]['answers'] as List<String>)[0]),
-        Answer((questions[index]['answers'] as List<String>)[1]),
-        Answer((questions[index]['answers'] as List<String>)[2]),
-        Answer((questions[index]['answers'] as List<String>)[3])
+        ...(questions[index]['answers'] as List<String>).map(
+          (answer) {
+            return Answer(answer, _clickHandler, answers, index);
+          },
+        ).toList(),
       ],
     );
   }

@@ -7,9 +7,22 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({super.key});
-  var _index = 2;
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  // var list  = [1, 2, 3, 4];
+  // (list as List<Int>).map((){
+
+  // });
+
+  final List<String> answers = ['', '', '', ''];
+  var _index = 0;
   var questions = [
     {
       'questionText': 'What is your fav color?',
@@ -25,6 +38,12 @@ class MyApp extends StatelessWidget {
     }
   ];
 
+  void onAnswerCLicked() {
+    setState(() {
+      _index += 1;
+    });
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -36,10 +55,10 @@ class MyApp extends StatelessWidget {
             backgroundColor: const Color.fromARGB(223, 234, 200, 207),
             body: _index < questions.length
                 ? Center(
-                    child: Quiz(questions, _index),
+                    child: Quiz(questions, _index, onAnswerCLicked, answers),
                   )
-                : const Center(
-                    child: Text('All Done'),
+                : Center(
+                    child: Text(answers[1]),
                   )));
   }
 }
