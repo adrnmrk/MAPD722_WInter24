@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/Answer.dart';
 import 'package:quiz_app/Question.dart';
 import 'package:quiz_app/Quiz.dart';
+import 'package:quiz_app/Result.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,6 +45,12 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  void onRestartCLicked() {
+    setState(() {
+      _index = 0;
+    });
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,7 @@ class MyAppState extends State<MyApp> {
                     child: Quiz(questions, _index, onAnswerCLicked, answers),
                   )
                 : Center(
-                    child: Text(answers[1]),
+                    child: Result(questions, answers, onRestartCLicked),
                   )));
   }
 }
