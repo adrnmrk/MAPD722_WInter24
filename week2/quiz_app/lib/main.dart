@@ -17,25 +17,30 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  // var list  = [1, 2, 3, 4];
-  // (list as List<Int>).map((){
+  final List<Map<int, String>> answers = [
+    {0: ''},
+    {1: ''},
+    {2: ''}
+  ];
+  final List<Map<int, int>> correct_answers = [
+    {0: 0},
+    {1: 2},
+    {2: 1}
+  ];
 
-  // });
-
-  final List<String> answers = ['', '', '', ''];
   var _index = 0;
   var questions = [
     {
-      'questionText': 'What is your fav color?',
-      'answers': ['Black', 'Red', 'Blue', 'Green']
+      'questionText': 'What is the capital of the United States?',
+      'answers': ['Washington, D.C', 'New York', 'London', 'Boston']
     },
     {
-      'questionText': 'What is your fav animal?',
-      'answers': ['Cat', 'Dog', 'Rabbit', 'Lion']
+      'questionText': 'What is the capital of China?',
+      'answers': ['Tokyo', 'Seoul', 'Beijing', 'Shanghai']
     },
     {
-      'questionText': 'What is your fav city?',
-      'answers': ['Toronto', 'NewYork', 'Paris', 'Rome']
+      'questionText': 'What is the capital of India?',
+      'answers': ['Mumbai', 'New Delhi', 'Kathmandu', 'Lahore']
     }
   ];
 
@@ -65,7 +70,8 @@ class MyAppState extends State<MyApp> {
                     child: Quiz(questions, _index, onAnswerCLicked, answers),
                   )
                 : Center(
-                    child: Result(questions, answers, onRestartCLicked),
+                    child: Result(
+                        questions, answers, onRestartCLicked, correct_answers),
                   )));
   }
 }

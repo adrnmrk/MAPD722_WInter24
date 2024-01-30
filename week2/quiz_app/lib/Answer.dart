@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
   final String answer;
   final VoidCallback clickHandler;
-  final List<String> answers;
+  final List<Map<int, String>> answers;
+
   final int index;
   const Answer(this.answer, this.clickHandler, this.answers, this.index);
 
@@ -16,7 +17,7 @@ class Answer extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.white)),
         onPressed: () {
-          answers[index] = answer;
+          answers[index][1] = answer;
           clickHandler();
         },
         child: Text(answer),

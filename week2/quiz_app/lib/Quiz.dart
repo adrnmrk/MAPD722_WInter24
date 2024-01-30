@@ -6,7 +6,7 @@ class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int index;
   final VoidCallback _clickHandler;
-  final List<String> answers;
+  final List<Map<int, String>> answers;
   Quiz(this.questions, this.index, this._clickHandler, this.answers);
 
   @override
