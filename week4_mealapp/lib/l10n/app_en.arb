@@ -1,0 +1,14 @@
+{
+  "apptitle": "Meal App",
+  "@apptitle": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "drawertitle": "Cooking UP",
+  "@drawertitle": {
+    "description": "drawer's title"
+  }, 
+    "filtersText": "Filters ",
+  "@filtersText": {
+    "description": "filter's Text"
+  }
+}
