@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FilterScreen extends StatefulWidget {
   final Function(Map<String, bool>) saveFilters;
 
-  const FilterScreen(this.saveFilters, {required bool isQuick});
+  const FilterScreen(this.saveFilters, {required bool isQuick}); //added for quick meals
 
   @override
   State<StatefulWidget> createState() {
@@ -17,11 +17,11 @@ class FilterScreen extends StatefulWidget {
 
 class FilterScreeState extends State<FilterScreen> {
   var isVegetarian = false;
-  var isQuick = false;
+  var isQuick = false; //added for quick meals
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late Future<bool> _isVegetarian;
-  late Future<bool> _isQuick;
+  late Future<bool> _isQuick; //added for quick meals
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class FilterScreeState extends State<FilterScreen> {
       });
     });
   }
-
+//added for quick meals
   void saveQuickFilter(bool value) async {
     final SharedPreferences prefs = await _prefs;
     setState(() {
@@ -99,6 +99,7 @@ class FilterScreeState extends State<FilterScreen> {
               }
             },
           ),
+          //added for quick meals
           FutureBuilder<bool>(
             future: _isQuick,
             builder: (context, snapshot) {

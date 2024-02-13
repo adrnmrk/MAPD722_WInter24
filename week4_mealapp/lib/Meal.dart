@@ -7,7 +7,7 @@ class Meal {
   final List<String> categories;
   final int duration;
   final bool isVegetarian;
-  final bool isQuick;
+  final bool isQuick; //added for new filter
 
   const Meal(
       {required this.id,
@@ -16,6 +16,6 @@ class Meal {
       required this.imageUrl,
       required this.duration,
       required this.isVegetarian,
-      required this.isQuick});
+      required this.isQuick}); //added for new filter
 
 }

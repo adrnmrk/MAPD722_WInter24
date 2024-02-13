@@ -67,7 +67,7 @@ const Dummy_Meals = [
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
       duration: 20,
       isVegetarian: true,
-      isQuick: true),
+      isQuick: true), // added filter for quick meals
   Meal(
       id: 'm2',
       categories: [
