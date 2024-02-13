@@ -6,12 +6,13 @@ class Meal {
   final String imageUrl;
   final List<String> categories;
   final int duration;
+  final bool isVegetarian;
 
-  const Meal({
-    required this.id,
-    required this.categories,
-    required this.title,
-    required this.imageUrl,
-    required this.duration,
-  });
+  const Meal(
+      {required this.id,
+      required this.categories,
+      required this.title,
+      required this.imageUrl,
+      required this.duration,
+      required this.isVegetarian});
 }

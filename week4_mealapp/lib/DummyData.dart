@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './Category.dart';
-import './meal.dart';
+import './Meal.dart';
 
 const DUMMY_CATEGORIES = [
   Category(
@@ -57,26 +57,26 @@ const DUMMY_CATEGORIES = [
 
 const Dummy_Meals = [
   Meal(
-    id: 'm1',
-    categories: [
-      'c1',
-      'c2',
-    ],
-    title: 'Spaghetti with Tomato Sauce',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-    duration: 20,
-  ),
+      id: 'm1',
+      categories: [
+        'c1',
+        'c2',
+      ],
+      title: 'Spaghetti with Tomato Sauce',
+      imageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+      duration: 20,
+      isVegetarian: true),
   Meal(
-    id: 'm2',
-    categories: [
-      'c2',
-    ],
-    title: 'Toast Hawaii',
-    imageUrl:
-        'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
-    duration: 10,
-  ),
+      id: 'm2',
+      categories: [
+        'c2',
+      ],
+      title: 'Toast Hawaii',
+      imageUrl:
+          'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
+      duration: 10,
+      isVegetarian: true),
   Meal(
     id: 'm3',
     categories: [
@@ -87,6 +87,7 @@ const Dummy_Meals = [
     imageUrl:
         'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
     duration: 45,
+    isVegetarian: false,
   ),
   Meal(
     id: 'm4',
@@ -97,6 +98,7 @@ const Dummy_Meals = [
     imageUrl:
         'https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg',
     duration: 60,
+    isVegetarian: true,
   ),
   Meal(
     id: 'm5',
@@ -109,5 +111,6 @@ const Dummy_Meals = [
     imageUrl:
         'https://cdn.pixabay.com/photo/2016/10/25/13/29/smoked-salmon-salad-1768890_1280.jpg',
     duration: 15,
+    isVegetarian: false,
   ),
 ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:week4_mealapp/Category.dart';
 import 'package:week4_mealapp/DummyData.dart';
 import 'package:week4_mealapp/MealWidget.dart';
+import './Meal.dart';
 
 class CategoryMeals extends StatelessWidget {
   const CategoryMeals({required this.category, super.key});
@@ -16,7 +17,7 @@ class CategoryMeals extends StatelessWidget {
     Widget content = ListView.builder(
         itemCount: filteredMeals.length,
         itemBuilder: (context, index) {
-          return MealWidget(filteredMeals[index]);
+          return MealWidget(filteredMeals[index] as Meal);
         });
 
     if (filteredMeals.isEmpty) {
