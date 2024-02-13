@@ -3,10 +3,11 @@ import 'package:week4_mealapp/MainDrawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class FilterScreen extends StatefulWidget {
   final Function(Map<String, bool>) saveFilters;
 
-  FilterScreen(this.saveFilters);
+  const FilterScreen(this.saveFilters, {required bool isQuick});
 
   @override
   State<StatefulWidget> createState() {
@@ -15,29 +16,43 @@ class FilterScreen extends StatefulWidget {
 }
 
 class FilterScreeState extends State<FilterScreen> {
-  var isVegeterian = false;
+  var isVegetarian = false;
   var isQuick = false;
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late Future<bool> _isV;
+  late Future<bool> _isVegetarian;
+  late Future<bool> _isQuick;
+
   @override
   void initState() {
     super.initState();
-    _isV = _prefs.then((SharedPreferences prefs) {
-      isVegeterian = prefs.getBool('isV') ?? false;
-      return isVegeterian;
+    _isVegetarian = _prefs.then((SharedPreferences prefs) {
+      isVegetarian = prefs.getBool('isVegetarian') ?? false;
+      return isVegetarian;
+    });
+    _isQuick = _prefs.then((SharedPreferences prefs) {
+      isQuick = prefs.getBool('isQuick') ?? false;
+      return isQuick;
     });
   }
 
-  void saveisVegFilter(bool isv) async {
+  void saveVegetarianFilter(bool value) async {
     final SharedPreferences prefs = await _prefs;
     setState(() {
-      _isV = prefs.setBool('isV', isv).then(
-        (bool succss) {
-          isVegeterian = isv;
-          return isv;
-        },
-      );
+      _isVegetarian = prefs.setBool('isVegetarian', value).then((bool success) {
+        isVegetarian = value;
+        return value;
+      });
+    });
+  }
+
+  void saveQuickFilter(bool value) async {
+    final SharedPreferences prefs = await _prefs;
+    setState(() {
+      _isQuick = prefs.setBool('isQuick', value).then((bool success) {
+        isQuick = value;
+        return value;
+      });
     });
   }
 
@@ -48,48 +63,67 @@ class FilterScreeState extends State<FilterScreen> {
         title: Text(AppLocalizations.of(context)!.filtersText),
         actions: [
           IconButton(
-              onPressed: () {
-                widget.saveFilters({'isVegetaranian': isVegeterian});
-              },
-              icon: const Icon(Icons.save))
+            onPressed: () {
+              widget.saveFilters({
+                'isVegetarian': isVegetarian,
+                'isQuick': isQuick,
+              });
+            },
+            icon: const Icon(Icons.save),
+          )
         ],
       ),
       drawer: MainDrawer(),
-      body: ListView(children: [
-        FutureBuilder(
-          future: _isV,
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-              case ConnectionState.waiting:
-                return const CircularProgressIndicator();
-              case ConnectionState.active:
-              case ConnectionState.done:
-                if (!snapshot.hasError) {
-                  return SwitchListTile(
-                    title: const Text('Only Vegetian Meals'),
-                    onChanged: (value) => saveisVegFilter(value),
-                    value: snapshot.data as bool,
-                  );
-                } else {
-                  return Text(
-                    'Button tapped ${snapshot.data} time${snapshot.data == true ? true : false}.\n\n'
-                    'This should persist across restarts.',
-                  );
-                }
-            }
-          },
-        ),
-        SwitchListTile(
-          title: const Text('Only Quick Meals'),
-          value: isQuick,
-          onChanged: (value) {
-            setState(() {
-              isQuick = value;
-            });
-          },
-        )
-      ]),
+      body: ListView(
+        children: [
+          FutureBuilder<bool>(
+            future: _isVegetarian,
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return const CircularProgressIndicator();
+                case ConnectionState.active:
+                case ConnectionState.done:
+                  if (!snapshot.hasError) {
+                    return SwitchListTile(
+                      title: const Text('Only Vegetarian Meals'),
+                      onChanged: (value) => saveVegetarianFilter(value),
+                      value: snapshot.data!,
+                    );
+                  } else {
+                    return Text(
+                      'Error: ${snapshot.error}',
+                    );
+                  }
+              }
+            },
+          ),
+          FutureBuilder<bool>(
+            future: _isQuick,
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return const CircularProgressIndicator();
+                case ConnectionState.active:
+                case ConnectionState.done:
+                  if (!snapshot.hasError) {
+                    return SwitchListTile(
+                      title: const Text('Only Quick Meals'),
+                      onChanged: (value) => saveQuickFilter(value),
+                      value: snapshot.data!,
+                    );
+                  } else {
+                    return Text(
+                      'Error: ${snapshot.error}',
+                    );
+                  }
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }
