@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:week4_mealapp/Category.dart';
 import 'package:week4_mealapp/CategoryMeals.dart';
+import 'package:week4_mealapp/Meal.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
-
-  const CategoryItem(this.category);
+  final List<Meal> filteredMeals;
+  const CategoryItem(this.category, this.filteredMeals);
 
   void selectCategory(BuildContext context, Category category) {
     // Navigator.of(context).push(route)
 
     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return CategoryMeals(category: category);
+      return CategoryMeals(
+        category: category,
+        filtered_Meals: filteredMeals,
+      );
     }));
   }
 

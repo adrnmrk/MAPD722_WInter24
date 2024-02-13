@@ -3,9 +3,11 @@ import 'package:week4_mealapp/CategoryWidget.dart';
 import 'package:week4_mealapp/DummyData.dart';
 import 'package:week4_mealapp/MainDrawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:week4_mealapp/Meal.dart';
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({super.key});
+  List<Meal> filteredMeals;
+  CategoryList(this.filteredMeals);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class CategoryList extends StatelessWidget {
             crossAxisSpacing: 100,
             mainAxisExtent: 100,
             mainAxisSpacing: 20),
-        children: DUMMY_CATEGORIES.map((cat) => CategoryItem(cat)).toList(),
+        children: DUMMY_CATEGORIES
+            .map((cat) => CategoryItem(cat, filteredMeals))
+            .toList(),
       ),
     );
   }

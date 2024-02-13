@@ -5,12 +5,14 @@ import 'package:week4_mealapp/MealWidget.dart';
 import './Meal.dart';
 
 class CategoryMeals extends StatelessWidget {
-  const CategoryMeals({required this.category, super.key});
   final Category category;
+  final List<Meal> filtered_Meals;
+  const CategoryMeals(
+      {required this.category, required this.filtered_Meals, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final filteredMeals = Dummy_Meals.where((meal) {
+    final filteredMeals = filtered_Meals.where((meal) {
       return meal.categories.contains(category.id);
     }).toList();
 
