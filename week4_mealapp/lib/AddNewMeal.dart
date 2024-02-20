@@ -29,6 +29,7 @@ class AddYourMealScreenState extends State<AddYourMealScreen> {
       var us = UserMeal(title: mealNameController.text, image: _pickedImage!);
       Provider.of<FavoriteMealsProvider>(context, listen: false)
           .addUserMeal(us);
+      Navigator.of(context).pop();
     }
   }
 
