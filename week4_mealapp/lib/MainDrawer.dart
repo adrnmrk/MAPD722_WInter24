@@ -30,8 +30,22 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/filters-screen');
             },
+          ),
+          ListTile(
+            leading: const Icon(Icons.favorite),
+            title: const Text('Favorite Meals'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/favorit-screen');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add),
+            title: const Text('My Own Meals'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/user-meals-screen');
+            },
           )
-        ],
+        ], //user-meals-screen
       ),
     );
   }
