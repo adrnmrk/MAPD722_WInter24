@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:week8project/FirsScreen.dart';
 import 'package:week8project/SecondScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:week8project/ValueProvider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ValueProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => const FirsScreen(),
+        '/': (context) => const FirstScreen(),
         '/second': (context) => const SecondScreen()
       },
     );
