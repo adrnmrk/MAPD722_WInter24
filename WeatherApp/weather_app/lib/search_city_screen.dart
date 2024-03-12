@@ -16,7 +16,12 @@ class _SearchForCityScreenState extends State<SearchForCityScreen> {
         appBar: AppBar(
           title: const Text('Search For Cities'),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CitiesSearchDelegate());
+                },
+                icon: const Icon(Icons.search)),
           ],
         ),
         body: ListView.builder(
