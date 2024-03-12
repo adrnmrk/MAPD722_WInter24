@@ -21,7 +21,7 @@ class Networking {
     var key = "071c3ffca10be01d334505630d2c1a9c";
 
     http.Response response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?q=$cityFullName&appid=$key'));
+        'https://api.openweathermap.org/data/2.5/weather?q=$cityFullName&appid=$key&units=metric'));
 
     if (response.statusCode == 200) {
       var jsonObject = jsonDecode(response.body);
@@ -31,6 +31,7 @@ class Networking {
       var icon = jsonObject['weather'][0]['icon'] as String;
       return WeatherObject(temp, humidity, icon, desc, cityFullName);
     } else {
+      print(response.statusCode);
       return WeatherObject(0.0, 0, "", "No Result", cityFullName);
     }
   }
