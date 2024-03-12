@@ -5,5 +5,6 @@ class WeatherObject {
   String cityName = "";
   String icon = "";
 
-  WeatherObject(this.temp, this.icon, this.mainWeather);
+  WeatherObject(
+      this.temp, this.humidity, this.icon, this.mainWeather, this.cityName);
 }
