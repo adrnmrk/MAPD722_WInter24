@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/LocationScreen.dart';
 import 'package:weather_app/search_city_screen.dart';
 import 'package:weather_app/weather_screen.dart';
+import 'package:weather_app/zip_code_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LocationScreen(),
         '/search': (context) => const SearchForCityScreen(),
         '/weather': (context) => const WeatherScreen(),
+        '/zipcode': (context) => const ZipCodeScreen(),
+
       },
     );
   }
